@@ -97,11 +97,46 @@ def play(game, xplayer, oplayer, print_game = True):
         
 
 if __name__ == '__main__':
-    xplayer = player.HumanPlayer('X')
-    oplayer = player.RandomComputerPlayer('O')
-    t = TicTacToe()
-    play(t, xplayer,oplayer, print_game=True)
+    print("Welcome to Tic Tac Toe!")
+    print("First, let's choose the players.")
+    while(True):
+        player1_type = input("Choose player for 'X' (Human/AI): ").strip()
+        if player1_type.lower() == 'human' or player1_type.lower() == 'ai':
+            break;
+        else:
+            print("That is not an invalid input, please try again!")
+            time.sleep(0.8)
 
-        
+    while(True):
+        player2_type = input("Choose player for 'O' (Human/AI): ").strip()
+        if player2_type.lower() == 'human' or player2_type.lower() == 'ai':
+            break;
+        else:
+            print("That is not an invalid input, please try again!")
+            time.sleep(0.8)
+
+
+    
+
+    if player1_type.lower() == 'human':
+        xplayer = player.HumanPlayer('X')
+    else:
+        player1_type = input("Choose difficulty for AI player 'X' (Easy/Difficult), if an invalid input is detected, this will default to Easy:").strip()
+        if player1_type.lower() == 'difficult':
+            oplayer = player.UnbeatableAIPlayer('X')
+        else:
+            oplayer = player.RandomComputerPlayer('O')
+
+    if player2_type.lower() == 'human':
+        oplayer = player.HumanPlayer('X')
+    else:
+        player2_type = input("Choose difficulty for AI player 'O' (Easy/Difficult), if an invalid input is detected, this will default to Easy:").strip()
+        if player2_type.lower() == 'difficult':
+            oplayer = player.UnbeatableAIPlayer('O')
+        else:
+            oplayer = player.RandomComputerPlayer('O')
+
+    t = TicTacToe()
+    play(t, xplayer, oplayer, print_game=True)
 
 
